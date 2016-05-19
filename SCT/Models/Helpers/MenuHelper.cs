@@ -12,25 +12,28 @@ namespace SCT.Models.Helpers
         private SqlConnection connection;
         private SqlCommand command;
         private SqlDataReader reader;
-        
         private IBaseDataAccessHelper baseDA;
-        public MenuHelper(BaseDataAccessHelper baseDA)
+
+        public IBaseDataAccessHelper GetBaseDA()
+        {
+            return baseDA;
+        }
+
+        public void SetBaseDA(IBaseDataAccessHelper baseDA)
         {
             this.baseDA = baseDA;
         }
-
-        public MenuHelper() { }
+        
 
         /* 전체메뉴 가져오기 */
         public List<Menu> GetAllMenus()
         {
             string sql = "SELECT CODE, P_CODE, NAME, ROLE FROM MENUS";
 
+            baseDA.SetConnectionString();
             Menu menus;
             List<Menu> menuList = new List<Menu>();
-            baseDA.SetConnectionString();
-
-            using(connection = new SqlConnection())
+            using (connection = new SqlConnection(baseDA.GetConnectionString()))
             {
                 connection.Open();
                 command = new SqlCommand(sql, connection);
@@ -64,5 +67,7 @@ namespace SCT.Models.Helpers
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

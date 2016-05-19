@@ -11,8 +11,8 @@ namespace SCT.Controllers
         /* 메인화면 */
         public ActionResult Main()
         {
+            SetMenus();
             return View();
         }
-
     }
 }

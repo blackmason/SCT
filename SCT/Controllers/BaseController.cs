@@ -9,17 +9,16 @@ namespace SCT.Controllers
 {
     public class BaseController : Controller
     {
-        private IMenuHelper menuHelper;
-        public BaseController(IMenuHelper menuHelper)
-        {
-            this.menuHelper = menuHelper;
-        }
 
         public ActionResult SetMenus()
         {
-            MenuHelper menuHelper = new MenuHelper();
+            IBaseDataAccessHelper baseDA = new BaseDataAccessHelper();
+            IMenuHelper menuHelper = new MenuHelper();
+            menuHelper.SetBaseDA(baseDA);
+
             var menus = menuHelper.GetAllMenus();
             return Json(menus, JsonRequestBehavior.AllowGet);
         }
     }
+
 }

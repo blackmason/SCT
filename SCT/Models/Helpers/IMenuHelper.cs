@@ -8,6 +8,10 @@ namespace SCT.Models.Helpers
 {
     public interface IMenuHelper
     {
+        IBaseDataAccessHelper GetBaseDA();
+
+        void SetBaseDA(IBaseDataAccessHelper baseDA);
+
         List<Menu> GetAllMenus();
 
         void AddMenu(string code, string parentCode, string name, string url);

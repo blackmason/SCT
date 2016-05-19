@@ -7,6 +7,8 @@ namespace SCT.Models.Helpers
 {
     public interface IBaseDataAccessHelper
     {
+        string GetConnectionString();
+        
         void SetConnectionString();
     }
 }

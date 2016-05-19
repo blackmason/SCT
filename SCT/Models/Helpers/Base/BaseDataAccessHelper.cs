@@ -8,13 +8,16 @@ namespace SCT.Models.Helpers
 {
     public class BaseDataAccessHelper : IBaseDataAccessHelper
     {
-        string connectionString;
+        public string connectionString;
+
+        public string GetConnectionString()
+        {
+            return connectionString;
+        }
 
         public void SetConnectionString()
         {
             connectionString = "server=127.0.0.1;uid=sa;password=ThsdhqmCGSY!!;database=NABAKEM";
         }
-
-        
     }
 }
